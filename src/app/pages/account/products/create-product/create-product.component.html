@@ -1,0 +1,187 @@
+<app-page-header></app-page-header>
+
+<main>
+
+  <!-- profile area start -->
+  <section class="profile__area pt-120 pb-120">
+    <div class="container">
+      <div class="profile__inner p-relative">
+        <div class="profile__shape">
+          <img class="profile__shape-1" src="assets/img/login/laptop.png" alt="">
+          <img class="profile__shape-2" src="assets/img/login/man.png" alt="">
+          <img class="profile__shape-3" src="assets/img/login/shape-1.png" alt="">
+          <img class="profile__shape-4" src="assets/img/login/shape-2.png" alt="">
+          <img class="profile__shape-5" src="assets/img/login/shape-3.png" alt="">
+          <img class="profile__shape-6" src="assets/img/login/shape-4.png" alt="">
+        </div>
+        <div class="row">
+          <div class="col-xxl-3 col-lg-3">
+            <app-sidebar></app-sidebar>
+          </div>
+          <div class="col-xxl-9 col-lg-9">
+            <div class="profile__tab-content">
+              <div class="row align-items-center mb-3">
+                <div class="col-md-6">
+                  <div class="profile__main-inner d-flex flex-wrap align-items-center">
+
+                    <div class="profile__main-content">
+                      <h4 class="profile__main-title">Add Product</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="profile__main-logout text-sm-end">
+                    <a routerLink="/account/products" class="tp-logout-btn">Go Back</a>
+                  </div>
+                </div>
+              </div>
+              <div class="profile__info-content">
+                <app-loader *ngIf="loading; else loadData" [title]="loadingTitle"></app-loader>
+                <ng-template #loadData>
+                  <form (submit)="submit()">
+                    <div class="row justify-content-center">
+                      <div class="col-xxl-4 col-md-4">
+                        <div class="profile__input-box">
+                          <div class="profile__input">
+                            <label for="">Category</label>
+                            <select  placeholder="Select Category" name="category" [(ngModel)]="category" class="nice-select">
+                              <option *ngFor="let category of categories" [value]="category.id">{{category.title}}</option>
+                              </select>
+                            <span *ngIf="errors.category" class="text-danger">{{errors.category}}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-xxl-8 col-md-8">
+                        <div class="profile__input-box">
+                          <div class="profile__input">
+                            <label for="">Name</label>
+                            <input type="text" placeholder="Enter product name" name="title" [(ngModel)]="name">
+                            <span *ngIf="errors.name" class="text-danger">{{errors.name}}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-xxl-4 col-md-4">
+                        <div class="profile__input-box">
+                          <div class="profile__input">
+                            <label for="">Price</label>
+                            <input type="text" placeholder="Enter product price" name="price" [(ngModel)]="price">
+                            <span *ngIf="errors.price" class="text-danger">{{errors.price}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xxl-4 col-md-4">
+                        <div class="profile__input-box">
+                          <div class="profile__input">
+                            <label for="">Sales Price</label>
+                            <input type="text" placeholder="Enter discount price" name="sales_price" [(ngModel)]="sales_price">
+                            <span *ngIf="errors.sales_price" class="text-danger">{{errors.sales_price}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xxl-4 col-md-4">
+                        <div class="profile__input-box">
+                          <div class="profile__input">
+                            <label for="">Quantity</label>
+                            <input type="text" placeholder="Enter quantity" name="qty" [(ngModel)]="qty">
+                            <span *ngIf="errors.qty" class="text-danger">{{errors.qty}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xxl-4 col-md-4">
+                        <div class="profile__input-box">
+                          <div class="profile__input">
+                            <label for="">SKU</label>
+                            <input type="text" placeholder="Enter product sku" name="price" [(ngModel)]="sku">
+                            <span *ngIf="errors.sku" class="text-danger">{{errors.sku}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xxl-4 col-md-4">
+                        <div class="profile__input-box">
+                          <div class="profile__input">
+                            <label for="">Featured</label>
+                            <select  placeholder="Enter product sku" name="featured" [(ngModel)]="featured" class="nice-select">
+                              <option value="1">Yes</option>
+                              <option value="0">No</option>
+                              </select>
+                            <span *ngIf="errors.featured" class="text-danger">{{errors.featured}}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xxl-12 col-md-12">
+                        <div class="profile__input-box">
+                          <div class="profile__input">
+                            <label for="">Short Description</label>
+                            <textarea rows="2" placeholder="Enter short description" name="short_description" [(ngModel)]="short_description"></textarea>
+                            <span *ngIf="errors.short_description" class="text-danger">{{errors.short_description}}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-xxl-12">
+                        <div class="profile__input-box">
+                          <div class="profile__input">
+                            <label for="description">Description</label>
+                            <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="description" id="editor2"
+                              [config]="editorConfig" name="description">
+                            </angular-editor>
+                            <span *ngIf="errors.description" class="text-danger">{{errors.description}}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-xxl-12">
+                        <div class="profile__input-box">
+                          <div class="profile__input">
+                            <label for="additional_information">Additional Information</label>
+                            <angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="additional_information"
+                              id="editor"
+                              [config]="editorConfig" name="additional_information">
+                            </angular-editor>
+                            <span *ngIf="errors.additional_information"
+                              class="text-danger">{{errors.additional_information}}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-xxl-4 text-center">
+                        <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+                        <div><img [src]="url" *ngIf="url" class="img-fluid"></div>
+                        <div class="profile__input-box">
+
+                          <div class="mb-3">
+                            <label for="image">Select an Image</label>
+                            <input type="file" #imageInput id="image" (change)="selectFile($event)" required>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+
+
+                      <div class="col-xxl-12">
+                        <div class="profile__btn">
+                          <button type="submit" class="tp-btn">Add Product</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                </ng-template>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- profile area end -->
+
+</main>
+
+<app-footer></app-footer>

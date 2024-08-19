@@ -1,0 +1,81 @@
+<app-page-header></app-page-header>
+
+<main>
+
+  <!-- profile area start -->
+  <section class="profile__area pt-120 pb-120">
+    <div class="container">
+      <div class="profile__inner p-relative">
+        <div class="profile__shape">
+          <img class="profile__shape-1" src="assets/img/login/laptop.png" alt="">
+          <img class="profile__shape-2" src="assets/img/login/man.png" alt="">
+          <img class="profile__shape-3" src="assets/img/login/shape-1.png" alt="">
+          <img class="profile__shape-4" src="assets/img/login/shape-2.png" alt="">
+          <img class="profile__shape-5" src="assets/img/login/shape-3.png" alt="">
+          <img class="profile__shape-6" src="assets/img/login/shape-4.png" alt="">
+        </div>
+        <div class="row">
+          <div class="col-xxl-3 col-lg-3">
+            <app-sidebar></app-sidebar>
+          </div>
+          <div class="col-xxl-9 col-lg-9">
+            <div class="profile__tab-content">
+              <div class="row align-items-center mb-3">
+                <div class="col-md-6">
+                  <div class="profile__main-inner d-flex flex-wrap align-items-center">
+
+                    <div class="profile__main-content">
+                      <h4 class="profile__main-title">Categories</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="profile__main-logout text-sm-end">
+                    <a routerLink="/account/categories/create" class="tp-logout-btn">Add Category</a>
+                  </div>
+                </div>
+              </div>
+              <div class="profile__main">
+                <app-loader *ngIf="loading; else loadData" [title]="loadingTitle"></app-loader>
+                <ng-template #loadData>
+                   <div class="profile__ticket table-responsive" *ngIf="categories.length != 0; else loadMessage">
+                     <table class="table">
+                       <thead>
+                         <tr>
+                           <th scope="col"></th>
+                           <th scope="col">Title</th>
+                           <th scope="col">Counts</th>
+                           <th scope="col">Action</th>
+                         </tr>
+                       </thead>
+                       <tbody>
+
+                         <tr *ngFor="let category of categories">
+                           <th scope="row"> <img [src]="'https://api.nascotradings.com/' + category.image" height="70"></th>
+                           <td data-info="title">{{category.title}}</td>
+                           <td>{{category.counts}} </td>
+                           <td><a routerLink="/account/categories/{{category.id}}/edit" class="tp-logout-btn">Edit</a></td>
+                         </tr>
+
+                       </tbody>
+                     </table>
+                   </div>
+                   <ng-template #loadMessage>
+                    <div class="alert alert-danger"><strong>Oops!</strong> There are no categories added yet!</div>
+                   </ng-template>
+
+                </ng-template>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- profile area end -->
+
+</main>
+
+<app-footer></app-footer>

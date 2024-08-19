@@ -37,7 +37,24 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "./src/assets/js/vendor/jquery.js",
+              "./src/assets/js/vendor/waypoints.js",
+              "./src/assets/js/bootstrap-bundle.js",
+              "./src/assets/js/meanmenu.js",
+              "./src/assets/js/swiper-bundle.js",
+              "./src/assets/js/slick.js",
+              "./src/assets/js/range-slider.js",
+              "./src/assets/js/magnific-popup.js",
+              "./src/assets/js/nice-select.js",
+              "./src/assets/js/purecounter.js",
+              "./src/assets/js/countdown.js",
+              "./src/assets/js/wow.js",
+              "./src/assets/js/isotope-pkgd.js",
+              "./src/assets/js/imagesloaded-pkgd.js",
+              "./src/assets/js/ajax-form.js",
+              "./src/assets/js/main.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {

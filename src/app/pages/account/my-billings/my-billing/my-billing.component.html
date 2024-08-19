@@ -1,0 +1,143 @@
+<app-page-header></app-page-header>
+
+<main>
+
+  <!-- profile area start -->
+  <section class="profile__area pt-120 pb-120">
+    <div class="container">
+      <div class="profile__inner p-relative">
+        <div class="profile__shape">
+          <img class="profile__shape-1" src="assets/img/login/laptop.png" alt="">
+          <img class="profile__shape-2" src="assets/img/login/man.png" alt="">
+          <img class="profile__shape-3" src="assets/img/login/shape-1.png" alt="">
+          <img class="profile__shape-4" src="assets/img/login/shape-2.png" alt="">
+          <img class="profile__shape-5" src="assets/img/login/shape-3.png" alt="">
+          <img class="profile__shape-6" src="assets/img/login/shape-4.png" alt="">
+        </div>
+        <div class="row">
+          <div class="col-xxl-3 col-lg-3">
+            <app-sidebar></app-sidebar>
+          </div>
+          <div class="col-xxl-9 col-lg-9">
+            <div class="profile__tab-content">
+              <div class="row align-items-center mb-3">
+                <div class="col-md-6">
+                  <div class="profile__main-inner d-flex flex-wrap align-items-center">
+
+                    <div class="profile__main-content">
+                      <h4 class="profile__main-title">Billing</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+
+                </div>
+              </div>
+              <div class="profile__main">
+                <div class=" ">
+                  <div class="row">
+                    <div class="col-lg-8 profile__ticket table-responsive">
+                      <table class="table">
+                        <tbody>
+
+                          <tr>
+                            <th>Email</th>
+                            <td>{{billing.email}}</td>
+                          </tr>
+                          <tr *ngIf="billing.company_name">
+                            <th>Company</th>
+                            <td>{{billing.company_name}}</td>
+                          </tr>
+                          <tr>
+                            <th>Phone</th>
+                            <td>{{billing.phone}}</td>
+                          </tr>
+                          <tr>
+                            <th>Address</th>
+                            <td>
+                              {{billing.street_address + ', ' + billing.city + ', ' + billing.state + ', ' + billing.postal_code + ', ' + billing.country}}
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>Payment Type</th>
+                            <td>{{billing.payment_type}}</td>
+                          </tr>
+                          <tr>
+                            <th>Total</th>
+                            <td>${{billing.total | number}}</td>
+                          </tr>
+                          <tr>
+                            <th>Delivery Fee</th>
+                            <td>${{billing.delivery_fee}}</td>
+                          </tr>
+                          <tr>
+                            <th>Payment Type</th>
+                            <td>{{billing.payment_type}}</td>
+                          </tr>
+                          <tr *ngIf="billing.notes">
+                            <th>Note</th>
+                            <td>${{billing.notes}}</td>
+                          </tr>
+                          <tr>
+                            <th>Status</th>
+                            <td><strong *ngIf="billing.payment_approval" class="text-success">Payment
+                                Approved</strong><strong *ngIf="!billing.payment_approval" class="text-danger">Payment
+                                Not Approved</strong></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="col-lg-4">
+                      <img [src]="'https://api.nascotradings.com/' + billing.payment_image" class="img-fluid">
+
+
+                    </div>
+                  </div>
+                  <div class="row mt-5">
+                    <div class="col-lg-12">
+                      <h3>Orders</h3>
+                      <div class="table-responsive profile__ticket">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>Product</th>
+                              <th>Quantity</th>
+                              <th>Price</th>
+                              <th>Sub Total</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let order of orders">
+                              <td><img [src]="'https://api.nascotradings.com/' + order.image" height="70"></td>
+                              <td>{{order.name}}</td>
+                              <td>{{order.quantity}}</td>
+                              <td>${{order.price}}</td>
+                              <td>${{order.sub_total | number}}</td>
+                            </tr>
+                          </tbody>
+                          <tfoot>
+                            <tr>
+                              <td colspan="4">Total</td>
+                              <td>${{billing.total | number}}</td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- profile area end -->
+
+</main>
+
+<app-footer></app-footer>

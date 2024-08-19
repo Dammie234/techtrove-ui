@@ -1,0 +1,91 @@
+<app-page-header></app-page-header>
+
+<main>
+
+  <!-- profile area start -->
+  <section class="profile__area pt-120 pb-120">
+    <div class="container">
+      <div class="profile__inner p-relative">
+        <div class="profile__shape">
+          <img class="profile__shape-1" src="assets/img/login/laptop.png" alt="">
+          <img class="profile__shape-2" src="assets/img/login/man.png" alt="">
+          <img class="profile__shape-3" src="assets/img/login/shape-1.png" alt="">
+          <img class="profile__shape-4" src="assets/img/login/shape-2.png" alt="">
+          <img class="profile__shape-5" src="assets/img/login/shape-3.png" alt="">
+          <img class="profile__shape-6" src="assets/img/login/shape-4.png" alt="">
+        </div>
+        <div class="row">
+          <div class="col-xxl-3 col-lg-3">
+            <app-sidebar></app-sidebar>
+          </div>
+          <div class="col-xxl-9 col-lg-9">
+            <div class="profile__tab-content">
+              <div class="row align-items-center mb-3">
+                <div class="col-md-6">
+                  <div class="profile__main-inner d-flex flex-wrap align-items-center">
+
+                    <div class="profile__main-content">
+                      <h4 class="profile__main-title">Add Category</h4>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="profile__main-logout text-sm-end">
+                    <a routerLink="/account/categories" class="tp-logout-btn">Go Back</a>
+                  </div>
+                </div>
+              </div>
+              <div class="profile__info-content">
+                <app-loader *ngIf="loading; else loadData" [title]="loadingTitle"></app-loader>
+                <ng-template #loadData>
+                  <form (submit)="submit()">
+                    <div class="row justify-content-center">
+                      <div class="col-xxl-12 col-md-12">
+                        <div class="profile__input-box">
+                          <div class="profile__input">
+                            <label for="">Title</label>
+                            <input type="text" placeholder="Enter category title" name="title" [(ngModel)]="title" >
+                            <span *ngIf="errors.title" class="text-danger">{{errors.title}}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-xxl-4 text-center">
+                        <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
+                        <div><img [src]="url" *ngIf="url" class="img-fluid"></div>
+                        <div class="profile__input-box">
+
+                          <div class="mb-3">
+                            <label for="image">Select an Image</label>
+                            <input type="file" #imageInput id="image" (change)="selectFile($event)" required>
+                          </div>
+                        </div>
+
+                      </div>
+
+
+
+
+                      <div class="col-xxl-12">
+                        <div class="profile__btn">
+                          <button type="submit" class="tp-btn">Add Category</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                </ng-template>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- profile area end -->
+
+</main>
+
+<app-footer></app-footer>

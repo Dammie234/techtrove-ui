@@ -1,0 +1,24 @@
+<div class="profile__tab mr-40">
+  <nav>
+    <div class="nav nav-tabs tp-tab-menu flex-column">
+      <a routerLink="/account/dashboard" class="nav-link" [routerLinkActive]="'active'"> Dashboard</a>
+
+      @if (user.role == 1) {
+        <a routerLink="/account/categories" class="nav-link" [routerLinkActive]="'active'">Categories</a>
+        <a routerLink="/account/products" class="nav-link" [routerLinkActive]="'active'">Products</a>
+        <a routerLink="/account/billings" class="nav-link" [routerLinkActive]="'active'">Billings</a>
+      }
+
+      @if(user.role == 2){
+        <a routerLink="/account/my-billings" class="nav-link" [routerLinkActive]="'active'">Billings</a>
+      }
+
+
+
+
+        <a routerLink="/auth/login" (click)="logout()" class="nav-link">
+          Logout</a>
+      <span id="marker-vertical" class="tp-tab-line d-none d-sm-inline-block"></span>
+    </div>
+  </nav>
+</div>
